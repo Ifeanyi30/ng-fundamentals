@@ -1,0 +1,15 @@
+<div>
+        <h1>Upcoming Angular Events</h1>
+        <hr>
+
+        <!-- this is used for get data into and from a nested component 
+        <nf-thumbnail (buttonClick)="handleEvent($event)" [event] = 'event'></nf-thumbnail> -->
+        <!-- The #child is a template variable used for getting data from a nested/child component
+        it could be used in place of the @output() decorator 
+        <nf-thumbnail #child [event] = 'event'></nf-thumbnail> -->
+        <nf-thumbnail [event] = 'event'></nf-thumbnail>
+        <!-- <h3>{{child.someProperty}}</h3> -->
+        <!-- <button class="btn btn-primary"  (click)="child.logFoo()"></button> -->
+        
+
+</div>
