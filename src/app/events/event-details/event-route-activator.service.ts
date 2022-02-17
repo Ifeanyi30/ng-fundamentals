@@ -13,9 +13,10 @@ export class EventRouteActivator implements CanActivate {
     }
     
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-        const eventExist = this.eventService.getEvent(Number(route.params['id'])) != null || isNaN(Number(route.params['id'])) ? true : false
-
-        if (eventExist == false){
+        const id: number = Number(route.paramMap.get('id'))
+        const eventExist = !!this.eventService.getEvent(id)
+        
+        if (isNaN(id) || !eventExist){
             this.router.navigate(['/404'])
             return false
         }
