@@ -1,14 +1,38 @@
+<div class="well hoverwell thumbnail">
+  <!-- <img [src]="event?.imageUrl" [alt]="event?.name"> -->
 
-        
-        <div class="well hoverwell thumbnail">
-            <h2>{{event.name}}</h2>
-            <div>Date: {{event.date}}</div>
-            <div>Time: {{event.time}}</div>
-            <div>Price: {{event.price | currency : 'USD' : 'symbol': '1.2-2'}}</div>
-            <div>
-                <span>Location: {{event.location.address}}</span>
-                <span>&nbsp;</span>
-                <span>{{event.location.city}}, {{event.location.country}}</span>
-            </div>
-            <!-- <button class="btn btn-primary" (click)="handleClickMe()">Get Event</button> -->
-        </div>
+  <div class="row">
+    <div class="col-md-11">
+      <h2>{{event?.name}} </h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div><strong>Date:</strong> {{event?.date}}</div>
+      <div [ngClass]="getStartTimeClass()" [ngSwitch]="event?.time">
+          <strong>Time:</strong> {{event?.time}}
+          <span *ngSwitchCase="'8:00 am'"> (Early Start)</span>
+          <span *ngSwitchCase="'10:00 am'"> (Late Start)</span>
+          <span *ngSwitchDefault> (Normal Start)</span>
+      </div>
+      <div><strong>Price:</strong> {{event?.price | currency : 'USD': 'symbol': '.2-2'}}</div>
+
+      <!-- this is used to remove the DOM element if it does not exist
+        use [hidden] instead to hide the element base on a condition
+        see example below 
+          <div *ngIf="event?.location">
+        <strong>Location:</strong>
+        <span> {{event?.location?.address}}</span>
+        <span class="pad-left">{{event?.location?.city}}, {{event?.location?.country}}</span>
+      </div>
+      <div *ngIf="event?.Online"><strong>Online:</strong> {{event?.Online}}</div> -->
+      <div [hidden]="!event?.location">
+        <strong>Location:</strong>
+        <span> {{event?.location?.address}}</span>
+        <span class="pad-left">{{event?.location?.city}}, {{event?.location?.country}}</span>
+      </div>
+      <div [hidden]="!event?.Online"><strong>Online:</strong> {{event?.Online}}</div>
+    </div>
+  </div>
+</div>
