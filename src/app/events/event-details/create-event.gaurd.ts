@@ -16,8 +16,9 @@ export class CreateEventGaurd implements CanDeactivate<CreateEventComponent> {
             currentState: RouterStateSnapshot,
             nextState: RouterStateSnapshot
         ): Observable<boolean|UrlTree>|Promise<boolean|UrlTree>|boolean|UrlTree {
-            if (component.isDirty)
+            if (component.isDirty){
                 return window.confirm('You have not saved created event, do you still want to cancel?')
-            return false
+            }
+            return true
     }
 } 

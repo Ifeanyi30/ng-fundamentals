@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { Subscription } from "rxjs";
+import { ActivatedRoute } from "@angular/router";
 import { ToastrService } from "../common/toaster.service";
-import { EventService } from "./shared/event.service";
+import { IEvent } from "./shared/event.model";
 
 
 @Component({
@@ -9,22 +9,18 @@ import { EventService } from "./shared/event.service";
     templateUrl: './event-list.component.html',
 })
 export class EventListComponent implements OnInit, OnDestroy {
-events: any[] = []
-sub! : Subscription
-  constructor(private eventService: EventService, private toastr: ToastrService){}
+  events: IEvent[] = [];
+  constructor(private toastr: ToastrService, private route: ActivatedRoute){}
     
 
     // handleEvent(data : string): void {
     //     console.log(`data received: ${data}`)
     // }
     ngOnInit(){
-      this.sub = this.eventService.getEvents().subscribe(events => {
-        this.events = events
-      })
+     this.events = this.route.snapshot.data['events']
     }
 
     ngOnDestroy(){
-      this.sub.unsubscribe()
     }
 
     handleThumbnailClick(data: string): void {
