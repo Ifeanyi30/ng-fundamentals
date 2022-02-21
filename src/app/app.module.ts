@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CollapsibleWellComponent } from './common/collapsible-well.component';
 import { Error404Component } from './errors/404.component';
 import { CreateEventComponent } from './events/create-event.component';
 import { CreateEventGaurd } from './events/event-details/create-event.gaurd';
@@ -16,6 +17,7 @@ import { EventListComponent } from './events/event-list.component';
 import { EventThumbnailComponent } from './events/event-thumbnail.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { UserModule } from './user/user.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -28,11 +30,13 @@ import { UserModule } from './user/user.module';
     Error404Component,
     CreateSessionsComponent,
     SessionListComponent,
+    CollapsibleWellComponent
  
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
     RouterModule.forRoot([
       
       {path:'events', component: EventListComponent, resolve: {events: EventListResolver}},
