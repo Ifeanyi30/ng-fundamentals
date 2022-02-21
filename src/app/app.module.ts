@@ -10,6 +10,7 @@ import { CreateEventGaurd } from './events/event-details/create-event.gaurd';
 import { CreateSessionsComponent } from './events/event-details/create_session.component';
 import { EventDetailsComponent } from './events/event-details/event-details.component';
 import { EventRouteActivator } from './events/event-details/event-route-activator.service';
+import { SessionListComponent } from './events/event-details/session-list.component';
 import { EventListResolver } from './events/event-list-resolver.service';
 import { EventListComponent } from './events/event-list.component';
 import { EventThumbnailComponent } from './events/event-thumbnail.component';
@@ -26,6 +27,7 @@ import { UserModule } from './user/user.module';
     CreateEventComponent,
     Error404Component,
     CreateSessionsComponent,
+    SessionListComponent,
  
   ],
   imports: [

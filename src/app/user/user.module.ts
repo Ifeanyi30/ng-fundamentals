@@ -23,6 +23,7 @@ import { ProfileGuard } from "./profile.guard";
         LoginComponent,
     ],
     exports: [
+        ReactiveFormsModule,
         FormsModule
     ]
 })
