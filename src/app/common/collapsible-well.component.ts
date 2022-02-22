@@ -1,5 +1,5 @@
 import { animate, state, style, transition, trigger } from "@angular/animations";
-import { Component, Input } from "@angular/core";
+import { Component } from "@angular/core";
 
 
 
@@ -15,9 +15,11 @@ import { Component, Input } from "@angular/core";
     ],
     template: `
     <div (click)="toggleContent()"  class="well pointable">
-        <h4 class="well-title">{{title}}</h4>
+        <h4>
+          <ng-content select="[title]"></ng-content>
+        </h4>
         <div [@openClose]="visible ? 'open' : 'closed'">
-            <ng-content></ng-content>
+            <ng-content select="[body]" ></ng-content>
         </div>
         
     </div>
@@ -26,7 +28,7 @@ import { Component, Input } from "@angular/core";
         trigger('openClose', [
       // ...
       state('open', style({
-        height: '120px',
+        height: '170px',
         opacity: 1,
       })),
       state('closed', style({
@@ -43,7 +45,6 @@ import { Component, Input } from "@angular/core";
     ]
 })
 export class CollapsibleWellComponent {
-    @Input() title!: string
     visible: boolean = true
 
     toggleContent() {

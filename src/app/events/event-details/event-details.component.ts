@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
+import { map } from "rxjs/operators";
 import { IEvent, ISession } from "../shared/event.model";
 import { EventService } from "../shared/event.service";
 
@@ -11,6 +12,9 @@ import { EventService } from "../shared/event.service";
 export class EventDetailsComponent implements OnInit{
     event: IEvent | undefined
     addMode: boolean = false
+    events!: IEvent[]
+    filterBy: string = 'all'
+    sortBy: string = 'votes'
 
     constructor(private eventService: EventService, private route: ActivatedRoute){}
 
@@ -36,5 +40,9 @@ export class EventDetailsComponent implements OnInit{
 
     cancelAddSession() {
         this.addMode = false
+    }
+
+    filterSessions(param : string) {
+        this.filterBy = param
     }
 }

@@ -18,3 +18,7 @@ a > h3 {
 .bottom-margin {
     margin-bottom: 10px;
 }
+
+.flex-direction-column {
+    flex-direction: column;
+}

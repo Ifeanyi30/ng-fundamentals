@@ -18,6 +18,7 @@ import { EventThumbnailComponent } from './events/event-thumbnail.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { UserModule } from './user/user.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DurationPipe } from './events/shared/duration.pipe';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     Error404Component,
     CreateSessionsComponent,
     SessionListComponent,
-    CollapsibleWellComponent
+    CollapsibleWellComponent,
+    DurationPipe,
  
   ],
   imports: [
