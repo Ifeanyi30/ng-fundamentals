@@ -23,6 +23,7 @@ import { TOASTR_TOKEN, Toastr } from "./common/toaster.service";
 import { JQ_TOKEN } from "./common/jQuery.service";
 import { ModalComponent } from './common/simpleModal.component';
 import { ModalTriggerDirective } from './common/modalTrigger.directive';
+import { UpvoteComponent } from './events/event-details/upvote.component';
 
 declare let toastr: Toastr
 declare let $: any
@@ -41,7 +42,8 @@ declare let $: any
     CollapsibleWellComponent,
     DurationPipe,
     ModalComponent,
-    ModalTriggerDirective
+    ModalTriggerDirective,
+    UpvoteComponent
  
   ],
   imports: [
