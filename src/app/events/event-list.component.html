@@ -9,7 +9,7 @@
         <nf-thumbnail #child [event] = 'event'></nf-thumbnail> -->
         <div class="row">
           <div class="col-md-5" *ngFor="let event of events">
-             <nf-thumbnail [event] = 'event' (click)="handleThumbnailClick(event.name)"></nf-thumbnail>
+             <nf-thumbnail [event] = 'event'></nf-thumbnail>
           </div>
         </div>
         <!-- <h3>{{child.someProperty}}</h3> -->

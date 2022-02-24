@@ -19,6 +19,13 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { UserModule } from './user/user.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DurationPipe } from './events/shared/duration.pipe';
+import { TOASTR_TOKEN, Toastr } from "./common/toaster.service";
+import { JQ_TOKEN } from "./common/jQuery.service";
+import { ModalComponent } from './common/simpleModal.component';
+import { ModalTriggerDirective } from './common/modalTrigger.directive';
+
+declare let toastr: Toastr
+declare let $: any
 
 @NgModule({
   declarations: [
@@ -33,6 +40,8 @@ import { DurationPipe } from './events/shared/duration.pipe';
     SessionListComponent,
     CollapsibleWellComponent,
     DurationPipe,
+    ModalComponent,
+    ModalTriggerDirective
  
   ],
   imports: [
@@ -56,6 +65,8 @@ import { DurationPipe } from './events/shared/duration.pipe';
     UserModule,
   ],
   providers: [
+    {provide: TOASTR_TOKEN, useValue: toastr},
+    {provide: JQ_TOKEN, useValue: $}
     // {provide: 'canDeactivateCreateEvent', useValue: checkDirtyState,}
     // this is good when using function as gaurds, just use the provide string value
     // to the appropriate route.

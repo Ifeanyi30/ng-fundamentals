@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { ToastrService } from "../common/toaster.service";
+// import { ToastrService } from "../common/toaster.service";
 import { IEvent } from "./shared/event.model";
 
 
@@ -10,7 +10,9 @@ import { IEvent } from "./shared/event.model";
 })
 export class EventListComponent implements OnInit, OnDestroy {
   events: IEvent[] = [];
-  constructor(private toastr: ToastrService, private route: ActivatedRoute){}
+  constructor(
+    // private toastr: ToastrService,
+    private route: ActivatedRoute){}
     
 
     // handleEvent(data : string): void {
@@ -23,7 +25,7 @@ export class EventListComponent implements OnInit, OnDestroy {
     ngOnDestroy(){
     }
 
-    handleThumbnailClick(data: string): void {
-      this.toastr.success(data)
-    }
+    // handleThumbnailClick(data: string): void {
+    //   this.toastr.success(data)
+    // }
 }
