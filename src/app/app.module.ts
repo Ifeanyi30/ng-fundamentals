@@ -10,7 +10,6 @@ import { CreateEventComponent } from './events/create-event.component';
 import { CreateEventGaurd } from './events/event-details/create-event.gaurd';
 import { CreateSessionsComponent } from './events/event-details/create_session.component';
 import { EventDetailsComponent } from './events/event-details/event-details.component';
-import { EventRouteActivator } from './events/event-details/event-route-activator.service';
 import { SessionListComponent } from './events/event-details/session-list.component';
 import { EventListResolver } from './events/event-list-resolver.service';
 import { EventListComponent } from './events/event-list.component';
@@ -24,6 +23,9 @@ import { JQ_TOKEN } from "./common/jQuery.service";
 import { ModalComponent } from './common/simpleModal.component';
 import { ModalTriggerDirective } from './common/modalTrigger.directive';
 import { UpvoteComponent } from './events/event-details/upvote.component';
+import { LocationValidator } from './events/location-validator.directive';
+import { HttpClientModule } from '@angular/common/http'
+import { EventResolver } from './events/event-resolver';
 
 declare let toastr: Toastr
 declare let $: any
@@ -43,17 +45,19 @@ declare let $: any
     DurationPipe,
     ModalComponent,
     ModalTriggerDirective,
-    UpvoteComponent
+    UpvoteComponent,
+    LocationValidator,
  
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     RouterModule.forRoot([
       
       {path:'events', component: EventListComponent, resolve: {events: EventListResolver}},
-      {path: 'events/:id', component: EventDetailsComponent, canActivate: [EventRouteActivator]},
+      {path: 'events/:id', component: EventDetailsComponent, resolve: {event: EventResolver}},
       {path: 'events/session/new', component: CreateSessionsComponent},
       {path: 'create', component: CreateEventComponent, canDeactivate: [CreateEventGaurd]},
       {path: '404', component: Error404Component},

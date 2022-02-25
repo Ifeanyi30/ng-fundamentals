@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, Params } from "@angular/router";
+import { ActivatedRoute, Params, Router } from "@angular/router";
+import { Subscription } from "rxjs";
 import { map } from "rxjs/operators";
 import { IEvent, ISession } from "../shared/event.model";
 import { EventService } from "../shared/event.service";
@@ -16,13 +17,17 @@ export class EventDetailsComponent implements OnInit{
     filterBy: string = 'all'
     sortBy: string = 'votes'
 
-    constructor(private eventService: EventService, private route: ActivatedRoute){}
+    constructor(private eventService: EventService, private router: Router, private route: ActivatedRoute){}
 
     ngOnInit(){
 
         this.route.params.forEach((params: Params) => {
-            this.event = this.eventService.getEvent(Number(params['id']))
+            this.event = this.route.snapshot.data['event']
+            if (this.event == null){
+                this.router.navigate(['404'])
+            }
             this.addMode = false
+            
         })
 
         // this.event = this.eventService.getEvent(Number(
@@ -41,7 +46,7 @@ export class EventDetailsComponent implements OnInit{
         const nextId = Math.max.apply(null, this.event!.sessions.map(s => s.id))
         data.id = nextId + 1
         this.event?.sessions.push(data)
-        this.eventService.updateEvent(this.event!)
+        this.eventService.saveEvent(this.event!)
         this.addMode = false
     }
 

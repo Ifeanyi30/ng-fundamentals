@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
+import { IEvent } from "./shared/event.model";
 import { EventService } from "./shared/event.service";
 
 
@@ -31,8 +32,11 @@ export class CreateEventComponent {
     }
 
     saveEvent(formValues: any){
-        this.eventService.saveEvent(formValues)
-        this.cancel()
-        this.isDirty =false
+        this.eventService.saveEvent(formValues).subscribe(() => {
+                this.cancel()
+                this.isDirty =false
+            }  
+        )
+        
     }
 }

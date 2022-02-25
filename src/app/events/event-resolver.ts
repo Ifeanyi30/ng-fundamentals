@@ -8,10 +8,10 @@ import { EventService } from "./shared/event.service";
 @Injectable({
     providedIn: 'root'
 })
-export class EventListResolver implements Resolve<any>{
+export class EventResolver implements Resolve<any>{
     constructor(private eventService: EventService) {}
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        return this.eventService.getEvents()
+        return this.eventService.getEvent(route.params['id'])
     }
 }
