@@ -1,5 +1,6 @@
-import { Component } from "@angular/core";
+import { Component, Inject } from "@angular/core";
 import { Router } from "@angular/router";
+import { Toastr, TOASTR_TOKEN } from "../common/toaster.service";
 import { AuthService } from "./auth.service";
 
 
@@ -13,14 +14,24 @@ export class LoginComponent {
     password: string | undefined
     mouseoverLoginButton: boolean | undefined
 
-    constructor(private authService: AuthService, private router: Router) {}
+    constructor(
+        private authService: AuthService,
+        private router: Router,
+        @Inject(TOASTR_TOKEN) private toastr: Toastr,
+        ) {}
 
     login(formValues: any) {
         this.authService.loginUser(
             formValues.userName,
             formValues.password
-        )
-        this.router.navigate(['/events'])
+        ).subscribe((resp: any) => {
+            if (!resp) {
+                this.toastr.error('Sorry! Invalid user login')
+            } else {
+                this.router.navigate(['events'])
+            }
+        })
+        
     }
 
     cancel(){
