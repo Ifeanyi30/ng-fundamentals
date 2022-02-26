@@ -16,8 +16,8 @@
             <span class="caret"></span>
           </a>
           <ul class="dropdown-menu">
-            <li >
-              <a href="">Angular Connect</a>
+            <li *ngFor="let event of events" >
+              <a [routerLink]="['/events', event.id]">{{event.name}}</a>
             </li>
           </ul>
         </li>
@@ -27,6 +27,9 @@
           <li>
             <a *ngIf="!authService.isAuthenticated()" [routerLink]="['/login']" routerLinkActive="active">Login</a>
             <a *ngIf="authService.isAuthenticated()" [routerLink]="['/profile']" routerLinkActive="active">Welcome {{authService.currentUser?.firstName}}</a>
+          </li>
+          <li *ngIf="authService.isAuthenticated()">
+            <a (click)="logout()" routerLinkActive="active">Logout</a>
           </li>
         </ul>
       </div>
@@ -45,6 +48,6 @@
 
 <simple-modal elementId="searchResults" title="Matching Sessions" >
   <div class="list-group">
-    <a class="list-group-item" *ngFor="let session of foundSessions" [routerLink]="['/events', session.eventId]">{{session.name}}</a>
+    <a class="list-group-item" *ngFor="let session of foundSessions" [routerLink]="['/events', session.id]">{{session.name}}</a>
   </div>
 </simple-modal>

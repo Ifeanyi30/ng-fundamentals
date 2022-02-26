@@ -9,7 +9,7 @@ import { IUser } from "./user.model";
     providedIn: 'root'
 })
 export class AuthService {
-    currentUser!: IUser
+    currentUser?: IUser
 
     constructor(private http: HttpClient){}
 
@@ -20,7 +20,7 @@ export class AuthService {
 
         return this.http.post('/api/login', logInfo, options).pipe(
             tap(data => {
-                this.currentUser = <IUser>data
+                return data
             })
         ).pipe(
             catchError(err =>{
@@ -41,9 +41,27 @@ export class AuthService {
         return !!this.currentUser;
     }
 
-    updateCurrentUser(firstName: string, lastName: string): void {
-        this.currentUser.firstName = firstName
-        this.currentUser.lastName =lastName
+    updateCurrentUser(firstName: string, lastName: string): Observable<Object> {
+        this.currentUser!.firstName = firstName
+        this.currentUser!.lastName =lastName
 
+        let options = {headers: new HttpHeaders({'Content-type': 'application/json'})}
+
+        return this.http.put(`/api/users/${this.currentUser!.id}`, this.currentUser, options)
+    }
+
+    checkAuthStatus() {
+        this.http.get('/api/currentIdentity').pipe(tap(data => {
+            if(data instanceof Object){
+                this.currentUser = <IUser>data
+            }
+        })).subscribe()
+    }
+
+    logout(){
+        this.currentUser = undefined
+        let options = {headers: new HttpHeaders({'Content-type': 'application/json'})}
+
+        return this.http.post('/api/logout', {}, options)
     }
 }

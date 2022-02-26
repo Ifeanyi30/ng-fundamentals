@@ -2,6 +2,7 @@ import { Component, Inject } from "@angular/core";
 import { Router } from "@angular/router";
 import { Toastr, TOASTR_TOKEN } from "../common/toaster.service";
 import { AuthService } from "./auth.service";
+import { IUser } from "./user.model";
 
 
 
@@ -28,6 +29,7 @@ export class LoginComponent {
             if (!resp) {
                 this.toastr.error('Sorry! Invalid user login')
             } else {
+                this.authService.currentUser = <IUser>resp.user
                 this.router.navigate(['events'])
             }
         })

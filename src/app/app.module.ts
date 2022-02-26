@@ -72,7 +72,7 @@ declare let $: any
   ],
   providers: [
     {provide: TOASTR_TOKEN, useValue: toastr},
-    {provide: JQ_TOKEN, useValue: $}
+    {provide: JQ_TOKEN, useValue: $},
     // {provide: 'canDeactivateCreateEvent', useValue: checkDirtyState,}
     // this is good when using function as gaurds, just use the provide string value
     // to the appropriate route.

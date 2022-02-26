@@ -39,10 +39,10 @@ export class SessionListComponent implements OnChanges {
     toggleVote(session: ISession) {
         if(this.userHasVoted(session)) {
             this.voterService.deleteVoter(this.eventId!, session,
-                this.authService.currentUser?.userName)
+                this.authService.currentUser!.userName)
         } else {
             this.voterService.addVoter(this.eventId!, session,
-                this.authService.currentUser?.userName)
+                this.authService.currentUser!.userName)
         }
         if (this.sortBy === 'votes')
         this.visibleSessions.sort(sortByVotes);
@@ -51,7 +51,7 @@ export class SessionListComponent implements OnChanges {
     userHasVoted(session: ISession): boolean{
 
         return this.voterService.userHasVoted(session,
-            this.authService.currentUser?.userName)
+            this.authService.currentUser!.userName)
     }
 
 }

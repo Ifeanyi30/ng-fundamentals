@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { ISession } from '../events/shared/event.model';
+import { IEvent, ISession } from '../events/shared/event.model';
 import { EventService } from '../events/shared/event.service';
 import { AuthService } from '../user/auth.service';
 
@@ -11,15 +12,20 @@ import { AuthService } from '../user/auth.service';
 })
 export class NavbarComponent implements OnInit {
   searchTerm: string = ''
-  foundSessions: any[] = []
+  foundSessions: ISession[] = []
   sub!: Subscription
+  events!: IEvent[]
 
   constructor(
     public authService: AuthService,
-    private eventService: EventService
+    private eventService: EventService,
+    private router: Router,
     ) { }
 
   ngOnInit(): void {
+    this.eventService.getEvents().subscribe((events) => {
+      this.events = events
+    })
   }
 
   searchSessions(term: string){
@@ -30,4 +36,9 @@ export class NavbarComponent implements OnInit {
     )
   }
 
+  logout() {
+    this.authService.logout().subscribe(() => {
+      this.router.navigate(['login'])
+    })
+  }
 }

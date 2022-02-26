@@ -30,8 +30,9 @@ export class EventService {
   //   Events[index] = event
   // }
 
-  searchSessions(term: string): Observable<ISession[]> {
-    return this.http.put<ISession[]>('/api/sessions/search?seach=', term)
+  searchSessions(term: string) {
+    let options = {headers: new HttpHeaders({'Content-Type': 'application/json'})}
+    return this.http.get<ISession[]>(`/api/sessions/search?search=${term}`)
       .pipe(catchError(this.handleError<ISession[]>('searchSessions', [])))
   }
 
