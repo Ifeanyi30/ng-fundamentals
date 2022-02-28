@@ -1,25 +1,29 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { of } from 'rxjs';
+import { IEvent } from '../events/shared/event.model';
 
 import { NavbarComponent } from './navbar.component';
 
 describe('NavbarComponent', () => {
   let component: NavbarComponent;
-  let fixture: ComponentFixture<NavbarComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ NavbarComponent ]
-    })
-    .compileComponents();
-  });
+  const mockAuth = jasmine.createSpyObj('mockAuth', ['logout'])
+  const mockEventService = jasmine.createSpyObj('mockEventService', ['getEvents', 'searchSessions'])
+  const mockRouter = jasmine.createSpyObj('mockRouter', ['navigate'])
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NavbarComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    mockEventService.getEvents.and.returnValue(of(<IEvent[]>{}))
+    component = new NavbarComponent(mockAuth, mockEventService, mockRouter)
+  })
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  
+  describe('Create NavbarComponent instance', () => {
+    it('should create', () => {
+    expect(component).toBeDefined();
   });
+  })
+  
+
+  
+
+  
 });
