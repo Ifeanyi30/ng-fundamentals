@@ -7,7 +7,7 @@ import { AuthService } from './user/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'ng-fundamentals'
+  title = 'Ng-fundamentals Events'
 
   constructor(private authservice: AuthService){}
   ngOnInit(): void {
