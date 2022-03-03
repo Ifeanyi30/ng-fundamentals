@@ -24,7 +24,7 @@ import { EventService } from "./shared/event.service";
 })
 export class CreateEventComponent {
     newEvent: any
-    isDirty: boolean = true
+    isDirty = true
     constructor(private router: Router, private eventService: EventService){}
 
     cancel(): void{

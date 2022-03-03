@@ -1,0 +1,9 @@
+.errorMessage { 
+      margin-top:150px; 
+      /* font-size: 100px; */
+      color: #bbb;
+      text-align: center; 
+    }
+    p{
+        font-size: 24;
+    }

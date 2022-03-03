@@ -11,7 +11,7 @@ import { AuthService } from '../user/auth.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  searchTerm: string = ''
+  searchTerm = ''
   foundSessions: ISession[] = []
   sub!: Subscription
   events!: IEvent[]

@@ -17,6 +17,7 @@ export class ModalTriggerDirective implements OnInit {
     }
     
     ngOnInit() {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         this.el.addEventListener('click', e => {
             this.$(`#${this.modalId}`).modal({})
         })

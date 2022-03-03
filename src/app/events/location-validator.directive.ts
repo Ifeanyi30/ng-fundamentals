@@ -8,10 +8,10 @@ import { FormGroup, Validator, NG_VALIDATORS } from "@angular/forms";
 })
 export class LocationValidator implements Validator {
     validate(control: FormGroup): {[key: string]: boolean}| null {
-        let addressControl = control.controls['address']
-        let cityControl = control.controls['city']
-        let countryControl = control.controls['country']
-        let onlineControl = (<FormGroup>control.root).controls['Online']
+        const addressControl = control.controls['address']
+        const cityControl = control.controls['city']
+        const countryControl = control.controls['country']
+        const onlineControl = (<FormGroup>control.root).controls['Online']
 
         if ((addressControl && addressControl.value && cityControl && 
             cityControl.value && countryControl && countryControl.value) 

@@ -11,7 +11,7 @@ import { VoterService } from "./voters.service";
 })
 export class SessionListComponent implements OnChanges {
     @Input() sessions?: ISession[]
-    @Input() filterBy: string = 'all'
+    @Input() filterBy = 'all'
     @Input() sortBy!: string
     @Input() eventId?: number
     visibleSessions : ISession[] = []

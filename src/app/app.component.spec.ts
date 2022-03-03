@@ -1,9 +1,7 @@
 import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
 import { AuthService } from './user/auth.service';
 
 describe('AppComponent', () => {
@@ -14,6 +12,7 @@ describe('AppComponent', () => {
       debugEl: DebugElement
 
   beforeEach(async () => {
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     mockAuthService = {checkAuthStatus: ()=>{}}
     await TestBed.configureTestingModule({
       imports: [
@@ -32,6 +31,7 @@ describe('AppComponent', () => {
     fixture = TestBed.createComponent(AppComponent);
     component = fixture.componentInstance;
     element = fixture.nativeElement
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     debugEl = fixture.debugElement
     component.ngOnInit()
   });

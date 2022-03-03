@@ -12,10 +12,10 @@ import { EventService } from "../shared/event.service";
 })
 export class EventDetailsComponent implements OnInit{
     event: IEvent | undefined
-    addMode: boolean = false
+    addMode = false
     events!: IEvent[]
-    filterBy: string = 'all'
-    sortBy: string = 'votes'
+    filterBy = 'all'
+    sortBy = 'votes'
 
     constructor(private eventService: EventService, private router: Router, private route: ActivatedRoute){}
 

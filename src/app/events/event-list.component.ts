@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 // import { ToastrService } from "../common/toaster.service";
 import { IEvent } from "./shared/event.model";
@@ -8,7 +8,7 @@ import { IEvent } from "./shared/event.model";
  
     templateUrl: './event-list.component.html',
 })
-export class EventListComponent implements OnInit, OnDestroy {
+export class EventListComponent implements OnInit {
   events: IEvent[] = [];
   constructor(
     // private toastr: ToastrService,
@@ -22,8 +22,6 @@ export class EventListComponent implements OnInit, OnDestroy {
      this.events = this.route.snapshot.data['events']
     }
 
-    ngOnDestroy(){
-    }
 
     // handleThumbnailClick(data: string): void {
     //   this.toastr.success(data)

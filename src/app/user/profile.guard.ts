@@ -17,7 +17,7 @@ export class ProfileGuard implements CanActivate {
         // private toaster: ToastrService
     ) {}
 
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+    canActivate(): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
         if (!this.authService.isAuthenticated()){
             this.router.navigate([''])
             // this.toaster.info('User must be registered to view and edit profile', 'Unauthorized Access!')
