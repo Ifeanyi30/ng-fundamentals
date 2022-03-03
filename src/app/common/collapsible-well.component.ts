@@ -45,7 +45,7 @@ import { Component } from "@angular/core";
     ]
 })
 export class CollapsibleWellComponent {
-    visible = true
+    visible = false
 
     toggleContent() {
         this.visible = !this.visible

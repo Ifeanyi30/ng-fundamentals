@@ -1,7 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, Params, Router } from "@angular/router";
-import { Subscription } from "rxjs";
-import { map } from "rxjs/operators";
+import { ActivatedRoute, Router } from "@angular/router";
 import { IEvent, ISession } from "../shared/event.model";
 import { EventService } from "../shared/event.service";
 
@@ -21,7 +19,7 @@ export class EventDetailsComponent implements OnInit{
 
     ngOnInit(){
 
-        this.route.params.forEach((params: Params) => {
+        this.route.params.forEach(() => {
             this.event = this.route.snapshot.data['event']
             if (this.event == null){
                 this.router.navigate(['404'])

@@ -1,6 +1,5 @@
 import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { IEvent } from "./shared/event.model";
-//import { EventEmitter } from "stream";
 
 @Component({
     selector: 'nf-thumbnail',
